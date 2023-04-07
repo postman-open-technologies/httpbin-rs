@@ -6,6 +6,7 @@ pub mod headers;
 pub mod utf8;
 pub mod status;
 pub mod openapi;
+pub mod api_docs;
 
 use futures::Future;
 use tk_http::server::{EncoderDone, Codec, Error};

@@ -4,7 +4,6 @@ use std::ascii::AsciiExt;
 use pages::{Response};
 use service::{Request};
 
-
 pub fn serve<S: 'static>(req: Request) -> Response<S> {
     let ua = req.headers()
         .find(|h| h.name.eq_ignore_ascii_case("User-Agent"))

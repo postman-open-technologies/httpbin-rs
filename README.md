@@ -28,7 +28,6 @@ By default listens on 0.0.0.0:8080, but you can pass a port number on the comman
 ## TODO
 
 * Add all unimplemented functionality
-* Redirect `/docs` to [OpenAPI docs](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/src/templates/openapi.yaml)
 
 ## Attribution
 
