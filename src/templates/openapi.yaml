@@ -3,13 +3,13 @@ info:
   title: httpbin.org
   description: 'A simple HTTP Request & Response Service.'
   contact:
-    email: kin.lane@postman.com
-    name: Kin Lane
+    email: mike.ralphson@postman.com
+    name: Mike Ralphson
     url: https://postman.com  
   license:
     name: ISC
     url: https://spdx.org/licenses/ISC.html    
-  version: 0.9.2
+  version: 0.9.3
 paths:
   "/absolute-redirect/{n}":
     get:

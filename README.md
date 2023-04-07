@@ -2,6 +2,9 @@
 
 ## :Status: Alpha
 
+![Icecream emoji logo](https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/static/apple-touch-icon.png)
+<img src="https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/static/crab_emoji.svg" alt="Rust crab logo/emoji" width="250px" height="250px" />
+
 This is a reimplementation of `httpbin` for two purposes:
 
 1. To demonstrate (and test) the abilities of an http library for rust
@@ -25,7 +28,11 @@ By default listens on 0.0.0.0:8080, but you can pass a port number on the comman
 ## TODO
 
 * Add all unimplemented functionality
-* Redirect `/docs` to [OpenAPI docs](https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/src/templates/openapi.yaml)
+* Redirect `/docs` to [OpenAPI docs](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/src/templates/openapi.yaml)
+
+## Attribution
+
+Originally written by [Paul Colomiets](https://githubcom/tailhook). Based on [`httpbin`](https://github.com/postmanlabs/httpbin) by [Kenneth Reitz](https://github.com/kennethreitz).
 
 ## License
 
