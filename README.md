@@ -20,7 +20,12 @@ Or use it as a library
 * `http`: http://github.com/swindon-rs/tk-http
 * `httpbin`: http://httpbin.org
 
-By default listens on port 8080. Many endpoints of the original httpbin are currently unimplemented.
+By default listens on 0.0.0.0:8080, but you can pass a port number on the command-line. Many endpoints of the original httpbin are currently unimplemented.
+
+## TODO
+
+* Add all unimplemented functionality
+* Redirect `/docs` to [OpenAPI docs](https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/src/templates/openapi.yaml)
 
 ## License
 
