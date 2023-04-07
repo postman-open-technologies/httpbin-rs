@@ -25,7 +25,12 @@ fn main() {
 
     let mut lp = Core::new().unwrap();
 
-    let addr = "0.0.0.0:8080".parse().unwrap();
+    let args: Vec<String> = env::args().collect();
+    let two: &usize = &2;
+    let port = if &args.len() == two { let a = &args[1]; a } else { let b = "8080"; b };
+
+    let addr = ("0.0.0.0:".to_owned()+&port).parse().unwrap();
+    dbg!(addr);
     let listener = TcpListener::bind(&addr, &lp.handle()).unwrap();
     let cfg = Config::new().done();
     let bin = HttpBin::new();

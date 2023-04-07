@@ -57,6 +57,7 @@ impl<S: 'static> Dispatcher<S> for HttpBinDispatcher {
         };
         match first_part {
             "" => Ok(pages::index::serve(req)),
+            "openapi.yaml" => Ok(pages::openapi::serve(req)),
             "ip" => Ok(pages::ip::serve(req)),
             "user-agent" => Ok(pages::user_agent::serve(req)),
             "headers" => Ok(pages::headers::serve(req)),
