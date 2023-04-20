@@ -1,6 +1,6 @@
 # Httpbin in Rust
 
-## :Status: Alpha
+## Status: Alpha
 
 ![Icecream emoji logo](https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/static/apple-touch-icon.png)
 <img src="https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/static/crab_emoji.svg" alt="Rust crab logo/emoji" width="250px" height="250px" />
@@ -35,17 +35,7 @@ Originally written by [Paul Colomiets](https://githubcom/tailhook). Based on [`h
 
 ## License
 
-Licensed under either of
-
-* [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
-* [MIT license](http://opensource.org/licenses/MIT)
-  at your option.
+Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 This project also contains code from the original `httpbin` which is [ISC licensed](http://opensource.org/licenses/ISC)
 
-## Contribution
-
-Unless you explicitly state otherwise, any contribution intentionally
-submitted for inclusion in the work by you, as defined in the Apache-2.0
-license, shall be dual licensed as above, without any additional terms or
-conditions.
