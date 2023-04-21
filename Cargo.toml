@@ -1,41 +1,15 @@
 [package]
 name = "httpbin"
-description = """
-    A httpbin reimplementation in rust. Works as a library and as a standalone
-    webserver binary. (not affiliated to the original httpbin)
-"""
-license = "MIT/Apache-2.0"
-readme = "README.rst"
-keywords = ["tokio", "http", "httpbin", "command-line"]
-categories = [
-    "asynchronous",
-    "network-programming",
-    "command-line-utilities",
-    ]
-homepage = "http://github.com/tailhook/httpbin-rs"
-documentation = "http://docs.rs/httpbin-rs"
-version = "0.3.3"
-authors = ["paul@colomiets.name"]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
 
 [dependencies]
-futures = "0.1.2"
-quick-error = "1.1.0"
-tokio-core = "0.1.6"
-tokio-io = "0.1.0"
-netbuf = "0.4.0"
-argparse = "0.2.1"
-env_logger = "0.3.5"
-httpdate = "0.3.2"
-log = "0.3.6"
-tk-bufstream = "0.3.0"
-tk-http = { version="0.3.1", default-features=false }
-tk-listen = "0.1.0"
-serde_json = "1.0.0"
-httparse = "1.2.1"
-
-[lib]
-name = "httpbin"
-
-[[bin]]
-name = "httpbin"
-doc = false
+axum = { version = "0.6.16", features = ["headers"] }
+minijinja = "0.32.0"
+rand = "0.8.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0.68"
+tokio = { version = "1.0", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }

@@ -12,22 +12,21 @@ This is a reimplementation of `httpbin` for two purposes:
 
 (not affiliated to the original httpbin)
 
-## Installation (of the binary)
-
-```shell
-cargo install httpbin
-```
-
-Or use it as a library
-
-* `http`: http://github.com/swindon-rs/tk-http
-* `httpbin`: http://httpbin.org
-
 By default listens on 0.0.0.0:8080, but you can pass a port number on the command-line. Many endpoints of the original httpbin are currently unimplemented.
 
-## TODO
+## Implementation Status
 
-* Add all unimplemented functionality
+- [ ] HTTP Methods
+- [ ] Auth
+- [x] Status codes
+- [x] Request inspection
+- [ ] Response inspection
+- [ ] Response formats
+- [ ] Dynamic data
+- [ ] Cookies
+- [ ] Images
+- [ ] Redirects
+- [ ] Anything
 
 ## Attribution
 
@@ -38,4 +37,3 @@ Originally written by [Paul Colomiets](https://githubcom/tailhook). Based on [`h
 Licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 This project also contains code from the original `httpbin` which is [ISC licensed](http://opensource.org/licenses/ISC)
-
