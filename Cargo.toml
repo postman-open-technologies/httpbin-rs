@@ -5,7 +5,8 @@ edition = "2021"
 license = "Apache-2.0"
 
 [dependencies]
-axum = { version = "0.6.16", features = ["headers"] }
+axum = { version = "0.6.16", features = ["headers", "http2"] }
+mime = "0.3"
 minijinja = "0.32.0"
 rand = "0.8.5"
 serde = { version = "1.0", features = ["derive"] }
@@ -13,3 +14,7 @@ serde_json = "1.0.68"
 tokio = { version = "1.0", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[dev-dependencies]
+hyper = { version = "0.14", features = ["full"] }
+tower = { version = "0.4", features = ["util"] }
