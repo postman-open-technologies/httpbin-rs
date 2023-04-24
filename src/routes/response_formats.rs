@@ -53,4 +53,29 @@ mod tests {
         let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
         assert!(std::str::from_utf8(&body).is_ok())
     }
+
+    #[tokio::test]
+    async fn xml() {
+        let app = routes();
+
+        let response = app
+            .oneshot(
+                Request::builder()
+                    .uri("/xml")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(
+            response.headers().get(header::CONTENT_TYPE),
+            Some(&HeaderValue::from_static(mime::TEXT_XML.as_ref()))
+        );
+
+        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        assert!(std::str::from_utf8(&body).is_ok())
+    }
+
 }
