@@ -1,9 +1,20 @@
-use axum::{response::Html, routing::get, Router};
+use axum::{response::Html, response::IntoResponse, routing::get, Router,
+  http::{StatusCode, header::{self}}};
 
 const UTF8_PAGE: &str = include_str!("../templates/utf8.html");
+const XML_PAGE: &str = include_str!("../templates/sample.xml");
 
 pub fn routes() -> Router {
     Router::new().route("/encoding/utf8", get(utf8))
+    .route("/xml", get(xml))
+}
+
+async fn xml() -> impl IntoResponse {
+    (
+        StatusCode::OK,
+        [(header::CONTENT_TYPE, "text/xml")],
+        XML_PAGE,
+    )
 }
 
 async fn utf8() -> Html<&'static str> {
