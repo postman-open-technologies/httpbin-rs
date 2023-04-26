@@ -43,6 +43,7 @@ mod tests {
         extract::connect_info::MockConnectInfo,
         http::{header, HeaderValue, Request, StatusCode},
     };
+    use http_body_util::BodyExt;
     use std::net::SocketAddr;
     use tower::ServiceExt;
 
@@ -68,7 +69,7 @@ mod tests {
             Some(&HeaderValue::from_static(mime::APPLICATION_JSON.as_ref()))
         );
 
-        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        let body = response.collect().await.unwrap().to_bytes();
         let response_json = serde_json::from_slice::<Value>(&body.to_vec()).unwrap();
         let headers = Value::as_object(&response_json["headers"]).unwrap();
         assert_eq!(headers["foo"], "value-foo");
@@ -90,7 +91,7 @@ mod tests {
             Some(&HeaderValue::from_static(mime::APPLICATION_JSON.as_ref()))
         );
 
-        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        let body = response.collect().await.unwrap().to_bytes();
         let response_json = serde_json::from_slice::<Value>(&body.to_vec()).unwrap();
         assert_eq!(&response_json["origin"], "10.10.32.1");
     }
@@ -116,7 +117,7 @@ mod tests {
             Some(&HeaderValue::from_static(mime::APPLICATION_JSON.as_ref()))
         );
 
-        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        let body = response.collect().await.unwrap().to_bytes();
         let response_json = serde_json::from_slice::<Value>(&body.to_vec()).unwrap();
         assert_eq!(&response_json["user_agent"], "foo-bar");
     }

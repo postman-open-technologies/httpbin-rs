@@ -22,8 +22,11 @@ async fn main() {
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
 
     tracing::info!("listening on {}", addr);
-    axum::Server::bind(&addr)
-        .serve(server::app().into_make_service_with_connect_info::<SocketAddr>())
-        .await
-        .unwrap();
+    let listener = tokio::net::TcpListener::bind(addr).await.unwrap();
+    axum::serve(
+        listener,
+        server::app().into_make_service_with_connect_info::<SocketAddr>(),
+    )
+    .await
+    .unwrap();
 }

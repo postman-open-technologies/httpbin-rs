@@ -1,6 +1,7 @@
 use crate::routes::{request_inspection, response_formats, root, status_codes};
 use axum::{
-    http::{header, HeaderValue, Method, Request, StatusCode},
+    extract::Request,
+    http::{header, HeaderValue, Method, StatusCode},
     middleware::{from_fn, Next},
     response::Response,
     Router,
@@ -17,7 +18,7 @@ pub fn app() -> Router {
         .layer(from_fn(inject_cors_headers))
 }
 
-async fn inject_server_header<B>(request: Request<B>, next: Next<B>) -> Response {
+async fn inject_server_header(request: Request, next: Next) -> Response {
     let mut response = next.run(request).await;
 
     let headers = response.headers_mut();
@@ -28,7 +29,7 @@ async fn inject_server_header<B>(request: Request<B>, next: Next<B>) -> Response
     response
 }
 
-async fn inject_cors_headers<B>(request: Request<B>, next: Next<B>) -> Response {
+async fn inject_cors_headers(request: Request, next: Next) -> Response {
     let method = request.method().clone();
     let request_headers = request.headers().clone();
     let mut response = next.run(request).await;

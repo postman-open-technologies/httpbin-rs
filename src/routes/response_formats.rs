@@ -17,6 +17,7 @@ mod tests {
         body::Body,
         http::{header, HeaderValue, Request, StatusCode},
     };
+    use http_body_util::BodyExt;
     use tower::ServiceExt;
 
     #[tokio::test]
@@ -39,7 +40,7 @@ mod tests {
             Some(&HeaderValue::from_static(mime::TEXT_HTML_UTF_8.as_ref()))
         );
 
-        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        let body = response.collect().await.unwrap().to_bytes();
         assert!(std::str::from_utf8(&body).is_ok())
     }
 }

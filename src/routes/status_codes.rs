@@ -135,7 +135,8 @@ mod tests {
         body::Body,
         http::{header, HeaderValue, Method, Request, StatusCode},
     };
-    use tower::{Service, ServiceExt};
+    use http_body_util::BodyExt;
+    use tower::ServiceExt;
 
     #[tokio::test]
     async fn selects_a_single_status_code() {
@@ -156,7 +157,7 @@ mod tests {
 
     #[tokio::test]
     async fn supports_multiple_http_methods() {
-        let mut app = routes();
+        let app = routes();
 
         let methods = vec![
             Method::GET,
@@ -170,10 +171,8 @@ mod tests {
 
         for method in methods {
             let response = app
-                .ready()
-                .await
-                .unwrap()
-                .call(
+                .clone()
+                .oneshot(
                     Request::builder()
                         .method(method)
                         .uri("/status/200")
@@ -237,7 +236,7 @@ mod tests {
 
     #[tokio::test]
     async fn chooses_a_higher_weighted_random_status_code_more_often() {
-        let mut app = routes();
+        let app = routes();
         let mut ok_returns: u16 = 0;
         let mut created_returns: u16 = 0;
         let mut accepted_returns: u16 = 0;
@@ -245,10 +244,8 @@ mod tests {
 
         for _num in 0..1000 {
             let response = app
-                .ready()
-                .await
-                .unwrap()
-                .call(
+                .clone()
+                .oneshot(
                     Request::builder()
                         .uri("/status/200:0.1,201:0.25,202:0.75,204:1")
                         .body(Body::empty())
@@ -318,7 +315,7 @@ mod tests {
 
     #[tokio::test]
     async fn redirects_have_location_header() {
-        let mut app = routes();
+        let app = routes();
 
         let redirects = vec![
             StatusCode::MOVED_PERMANENTLY,
@@ -330,10 +327,8 @@ mod tests {
 
         for redirect in redirects {
             let response = app
-                .ready()
-                .await
-                .unwrap()
-                .call(
+                .clone()
+                .oneshot(
                     Request::builder()
                         .uri(format!("/status/{}", redirect.as_str()))
                         .body(Body::empty())
@@ -444,7 +439,7 @@ mod tests {
             Some(&HeaderValue::from_static(mime::TEXT_PLAIN.as_ref()))
         );
 
-        let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
+        let body = response.collect().await.unwrap().to_bytes();
         assert!(std::str::from_utf8(&body).is_ok())
     }
 }
