@@ -12,7 +12,7 @@ pub fn routes() -> Router {
 async fn xml() -> impl IntoResponse {
     (
         StatusCode::OK,
-        [(header::CONTENT_TYPE, "text/xml")],
+        [(header::CONTENT_TYPE, mime::TEXT_XML.essence_str())],
         XML_PAGE,
     )
 }
@@ -71,7 +71,7 @@ mod tests {
         assert_eq!(response.status(), StatusCode::OK);
         assert_eq!(
             response.headers().get(header::CONTENT_TYPE),
-            Some(&HeaderValue::from_static(mime::TEXT_XML.as_ref()))
+            Some(&HeaderValue::from_static(mime::TEXT_XML.essence_str()))
         );
 
         let body = hyper::body::to_bytes(response.into_body()).await.unwrap();
