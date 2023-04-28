@@ -5,7 +5,7 @@ edition = "2021"
 license = "Apache-2.0"
 
 [dependencies]
-axum = { version = "0.6.16", features = ["headers", "http2"] }
+axum = { git="https://github.com/tokio-rs/axum.git", branch="david/hyper-1.0-rc.x", features = ["headers", "http2"] }
 mime = "0.3"
 minijinja = "0.32.0"
 rand = "0.8.5"
@@ -17,4 +17,5 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 
 [dev-dependencies]
 hyper = { version = "0.14", features = ["full"] }
+http-body-util = "0.1.0-rc.2"
 tower = { version = "0.4", features = ["util"] }
