@@ -3,10 +3,18 @@ mod server;
 
 use std::env;
 use std::net::SocketAddr;
+use tracing_subscriber::{filter::LevelFilter, EnvFilter, FmtSubscriber};
 
 #[tokio::main]
 async fn main() {
-    tracing_subscriber::fmt::init();
+    let subscriber = FmtSubscriber::builder()
+        .with_env_filter(
+            EnvFilter::builder()
+                .with_default_directive(LevelFilter::INFO.into())
+                .from_env_lossy(),
+        )
+        .finish();
+    tracing::subscriber::set_global_default(subscriber).expect("setting default subscriber failed");
 
     // TODO: Better arg parsing and error handling.
     let args: Vec<String> = env::args().collect();
@@ -21,7 +29,7 @@ async fn main() {
 
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
 
-    tracing::info!("listening on {}", addr);
+    tracing::info!("listening on http://{}", addr);
     axum::Server::bind(&addr)
         .serve(server::app().into_make_service_with_connect_info::<SocketAddr>())
         .await
