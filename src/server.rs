@@ -1,4 +1,4 @@
-use crate::routes::{request_inspection, response_formats, root, status_codes};
+use crate::routes::{images, request_inspection, response_formats, root, status_codes};
 use axum::{
     http::{header, HeaderValue, Method, Request, StatusCode},
     middleware::{from_fn, Next},
@@ -13,6 +13,7 @@ pub fn app() -> Router {
         .merge(request_inspection::routes())
         .merge(response_formats::routes())
         .merge(status_codes::routes())
+        .merge(images::routes())
         .layer(from_fn(inject_server_header))
         .layer(from_fn(inject_cors_headers))
 }

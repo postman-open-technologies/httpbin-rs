@@ -3,6 +3,7 @@
   <head>
     <meta http-equiv="content-type" value="text/html;charset=utf8" />
     <title>httpbin-rs: HTTP Client Testing Service</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.3/gh-fork-ribbon.min.css" />
     <style type="text/css" media="all">
       /* style: man */
       body#manpage {
@@ -188,6 +189,7 @@
   </head>
 
   <body>
+    <a class="github-fork-ribbon" href="https://github.com/postman-open-technologies/httpbin-rs" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
     <div class="mp">
       <h1>httpbin-rs: HTTP Request &amp; Response Service</h1>
 
@@ -366,21 +368,18 @@
           <em>chunk_size</em> and request <em>duration</em> parameter.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/html" data-bare-link="true"
             ><code>/html</code></a
           >
           Renders an HTML Page.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/robots.txt" data-bare-link="true"
             ><code>/robots.txt</code></a
           >
           Returns some robots.txt rules.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/deny" data-bare-link="true"
             ><code>/deny</code></a
           >
@@ -419,29 +418,27 @@
           page containing <em>n</em> HTML links.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/image"><code>/image</code></a> Returns page
           containing an image based on sent Accept header.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/image/png"><code>/image/png</code></a> Returns
           page containing a PNG image.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/image/jpeg"><code>/image/jpeg</code></a> Returns
           page containing a JPEG image.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/image/webp"><code>/image/webp</code></a> Returns
           page containing a WEBP image.
         </li>
         <li>
-          [unimplemented]
           <a href="{{ prefix }}/image/svg"><code>/image/svg</code></a> Returns
           page containing a SVG image.
+        </li>
+        <li>
+          <a href="{{ prefix }}/favicon.ico"><code>/favicon.ico</code></a> Returns a favicon.
         </li>
         <li>
           [unimplemented]
@@ -449,6 +446,10 @@
             ><code>/forms/post</code></a
           >
           HTML form that submits to <em>/post</em>
+        </li>
+        <li>
+          <a href="{{ prefix }}/json" data-bare-link="true"><code>/json</code></a>
+          Returns some JSON
         </li>
         <li>
           [unimplemented]
@@ -464,7 +465,7 @@
           Returns given response headers.
         </li>
         <li>
-          <a href="{{ prefix }}/openapi.yaml"><code>/openpapi.yaml</code></a>
+          <a href="{{ prefix }}/openapi.yaml"><code>/openapi.yaml</code></a>
           Returns the OpenAPI definition for this httpbin.
         </li>
         <li>
@@ -561,14 +562,13 @@ Content-Length: 135
       <h2 id="SEE-ALSO">SEE ALSO</h2>
 
       <p>Original <a href="https://httpbin.org">httpbin</a></p>
-      <p><a href="https://www.hurl.it">Hurl.it</a> - Make HTTP requests.</p>
+      <p><a href="https://httpbingo.org/">https://httpbingo.org/</a> - Port in Go.</p>
       <p>
         <a href="http://requestb.in">RequestBin</a> - Inspect HTTP requests.
       </p>
       <p>
-        <a href="http://python-requests.org" data-bare-link="true"
-          >http://python-requests.org</a
-        >
+      <a href="https://docs.rs/axum/latest/axum/" data-bare-link="true">
+        https://docs.rs/axum/latest/axum/</a>
       </p>
     </div>
   </body>

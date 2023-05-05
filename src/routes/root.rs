@@ -8,15 +8,23 @@ use axum::{
 use minijinja::render;
 
 const INDEX_TEMPLATE: &str = include_str!("../templates/index.html");
+const HTML_TEMPLATE: &str = include_str!("../templates/moby.html");
 const OPENAPI_SPECIFICATION: &str = include_str!("../templates/openapi.yaml");
+const ROBOTS_TEMPLATE: &str = include_str!("../templates/robots.txt");
+const HUMANS_TEMPLATE: &str = include_str!("../templates/humans.txt");
+const PLUGIN_TEMPLATE: &str = include_str!("../templates/ai-plugin.json");
 const NOT_FOUND_PAGE: &str = include_str!("../templates/not_found.html");
 const API_DOCS_LOCATION: &str = "https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/postman-open-technologies/httpbin-rs/main/src/templates/openapi.yaml&nocors";
 
 pub fn routes() -> Router {
     Router::new()
         .route("/", get(index))
+        .route("/html", get(html))
         .route("/api-docs", get(api_docs))
         .route("/openapi.yaml", get(openapi))
+        .route("/robots.txt", get(robots))
+        .route("/.well-known/humans.txt", get(humans))
+        .route("/.well-known/ai-plugin.json", get(plugin))
         .fallback(not_found)
 }
 
@@ -37,6 +45,31 @@ async fn api_docs() -> impl IntoResponse {
         StatusCode::PERMANENT_REDIRECT,
         [(header::LOCATION, API_DOCS_LOCATION)],
     )
+}
+
+async fn robots() -> impl IntoResponse {
+    (
+        [(header::CONTENT_TYPE, "text/plain")],
+        ROBOTS_TEMPLATE,
+    )
+}
+
+async fn humans() -> impl IntoResponse {
+    (
+        [(header::CONTENT_TYPE, "text/plain")],
+        HUMANS_TEMPLATE,
+    )
+}
+
+async fn plugin() -> impl IntoResponse {
+    (
+        [(header::CONTENT_TYPE, "application/json")],
+        PLUGIN_TEMPLATE,
+    )
+}
+
+async fn html() -> Html<String> {
+    render!(HTML_TEMPLATE, prefix => "").into()
 }
 
 async fn not_found() -> impl IntoResponse {
