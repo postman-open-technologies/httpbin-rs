@@ -8,7 +8,7 @@
 This is a reimplementation of `httpbin` for two purposes:
 
 1. To demonstrate (and test) the abilities of an http library for rust
-2. To make a static binary (1.6MB) providing all the httpbin functionality
+2. To make a static binary (4.6MB) providing all the httpbin functionality
 
 (not affiliated to the original httpbin)
 

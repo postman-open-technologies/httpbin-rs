@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "HTTPBin Plugin",
+  "name_for_model": "httpbin",
+  "description_for_human": "Plugin for accessing HTTPBin functionality.",
+  "description_for_model": "Plugin for accessing HTTPBin functionality. This plugin can provide information on network requests such as IP addresses, request headers, cookies, user-agents etc. It can also respond with various data such as JSON, XML, images, favicons, robots.txt, .well-known/humans.txt etc.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "http://httpbin.org/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "http://httpbin.org/image/svg",
+  "contact_email": "mike.ralphson@gmail.com",
+  "legal_info_url": "http://httpbin.org/terms"
+}

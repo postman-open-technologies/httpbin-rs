@@ -1,13 +1,24 @@
-use axum::{response::Html, routing::get, Router};
+use axum::{response::Html, response::IntoResponse, routing::get, Router,
+  http::{StatusCode, header::{self}}};
 
 const UTF8_PAGE: &str = include_str!("../templates/utf8.html");
+const JSON_PAGE: &str = include_str!("../templates/json.json");
 
 pub fn routes() -> Router {
     Router::new().route("/encoding/utf8", get(utf8))
+    .route("/json", get(json))
 }
 
 async fn utf8() -> Html<&'static str> {
     UTF8_PAGE.into()
+}
+
+async fn json() -> impl IntoResponse {
+(
+    StatusCode::OK,
+    [(header::CONTENT_TYPE, mime::APPLICATION_JSON.essence_str())],
+    JSON_PAGE,
+)
 }
 
 #[cfg(test)]
