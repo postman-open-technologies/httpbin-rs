@@ -3,14 +3,18 @@ mod server;
 
 use std::env;
 use std::net::SocketAddr;
-use tracing::{Level};
-use tracing_subscriber::FmtSubscriber;
+use tracing_subscriber::{filter::LevelFilter, EnvFilter, FmtSubscriber};
 
 #[tokio::main]
 async fn main() {
-    let subscriber = FmtSubscriber::builder().with_max_level(Level::INFO).finish();
-    tracing::subscriber::set_global_default(subscriber)
-        .expect("setting default subscriber failed");
+    let subscriber = FmtSubscriber::builder()
+        .with_env_filter(
+            EnvFilter::builder()
+                .with_default_directive(LevelFilter::INFO.into())
+                .from_env_lossy(),
+        )
+        .finish();
+    tracing::subscriber::set_global_default(subscriber).expect("setting default subscriber failed");
 
     // TODO: Better arg parsing and error handling.
     let args: Vec<String> = env::args().collect();
